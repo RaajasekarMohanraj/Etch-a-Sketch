@@ -1,0 +1,21 @@
+#main-content{
+    display: flex;
+    justify-content: space-between;
+}
+
+#grid-area{
+    height: 600px;
+    width: 600px;
+}
+
+body{
+    background-color: gray;
+}
+
+button{
+    font-size: 2rem;
+    cursor: pointer;
+    border-radius: 15px;
+    background-color: #33333F;
+    color: rgb(208, 206, 206);
+}

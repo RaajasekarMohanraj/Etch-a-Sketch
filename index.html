@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etch-a-Sketch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="index.js"></script>
+    <div id="main-content">
+        <div id="Selectors-div">
+            <p>16 x 16</p>
+            <input type="range" min="5" max="30" value="16" onchange="onRangeChange()">
+            <button type="button" onclick="onReset()">Reset</button>
+        </div>
+        <div id="grid-area"></div>
+        <script>createGrid()</script>
+    </div>
+
+</body>
+</html>
