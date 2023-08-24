@@ -4,15 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etch-a-Sketch</title>
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700|Martel:400,700" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
     <script src="index.js"></script>
+    <div id="nav-bar">
+        <h1>Etch-a-Sketch</h1>
+        <button type="button" onclick="onReset()">Reset</button>
+
+    </div>
     <div id="main-content">
         <div id="Selectors-div">
-            <p>16 x 16</p>
-            <input type="range" min="5" max="30" value="16" onchange="onRangeChange()">
-            <button type="button" onclick="onReset()">Reset</button>
+            <div id="range-value">
+                <input class = "range-slider" type="range" min="5" max="30" value="16" onchange="onRangeChange()">
+                <div>16 x 16</div>
+            </div>
+            <button type="button" onclick="onClickRainbow()">Pick random color</button>
         </div>
         <div id="grid-area"></div>
         <script>createGrid()</script>

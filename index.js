@@ -1,12 +1,13 @@
 
-
+let colorOnHover = "black"
+let isRandomColorEnabled = false;
 
 function onRangeChange(){
-    let div = document.getElementById("Selectors-div");
-    div.children[0].textContent = div.children[1].value + " x " + div.children[1].value ;
-    this.createGrid(div.children[1].value)
+    debugger
+    let div = document.getElementById("range-value");
+    div.children[1].textContent = div.children[0].value + " x " + div.children[0].value ;
+    this.createGrid(div.children[0].value)
 }
-
 //960px wide
 function createGrid(value = 16) {
     document.getElementById("grid-area").replaceChildren()
@@ -20,7 +21,7 @@ function createGrid(value = 16) {
             oDiv.setAttribute("class", "grid-item")
             oDiv.style.backgroundColor = "white";
             oDiv.style.height = oDiv.style.width = 600/value +"px";
-            oDiv.style.border = "2px black solid";
+            // oDiv.style.border = "0.20px black solid";
             oDiv.onmouseenter = onHoverGridItem
             horizontalRowDiv.appendChild(oDiv);
         }
@@ -28,10 +29,40 @@ function createGrid(value = 16) {
     }
 }
 function onHoverGridItem(event) {
-    event.target.style.backgroundColor = "black";
+    event.target.style.backgroundColor = getColorOnHover();
 }
 
 function onReset() {
     let items = document.getElementsByClassName("grid-item");
     Array.from(items).forEach(element => element.style.backgroundColor = "white");
+}
+
+function onClickRainbow() {
+    if(!isRandomColorEnabled){
+        event.target.style.border = "5px rgba(250,112,154,1) solid";
+    }else{
+        event.target.style.border = "2px rgba(250,112,154,1) solid"
+    }
+    isRandomColorEnabled = !isRandomColorEnabled;
+}
+
+function getColorOnHover() {
+    if(isRandomColorEnabled){
+        // return `rgb(${this.getRandomNumber(0, 255)}, ${this.getRandomNumber(0, 255)}, ${this.getRandomNumber(0, 255)}, ${1})`
+        return this.getRandomHexCode();
+    } else{
+        return "rgba(250,112,154,1)";
+    }
+}
+function getRandomHexCode(){
+    let index = getRandomNumber(0, 1);
+    if(index == 0){
+        return `rgba(${255/* this.getRandomNumber(0, 255) */}, ${0}, ${this.getRandomNumber(0, 255)}, ${0.5})`
+    } else{
+        return `rgba(${0}, ${this.getRandomNumber(0, 255)}, ${255/* this.getRandomNumber(0, 255) */}, ${0.5})`
+    }
+}
+
+function getRandomNumber(min, max){
+    return Math.floor(Math.random() * (max - min)) + min;
 }
