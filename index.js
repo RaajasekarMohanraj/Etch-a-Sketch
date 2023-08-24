@@ -1,7 +1,7 @@
 
 let colorOnHover = "black"
 let isRandomColorEnabled = false;
-
+let isOpaque = false;
 function onRangeChange(){
     debugger
     let div = document.getElementById("range-value");
@@ -39,6 +39,8 @@ function onReset() {
 
 function onClickRainbow() {
     if(!isRandomColorEnabled){
+        isOpaque = false;
+        document.getElementById("opaque-button").style.border = "2px rgba(250,112,154,1) solid";
         event.target.style.border = "5px rgba(250,112,154,1) solid";
     }else{
         event.target.style.border = "2px rgba(250,112,154,1) solid"
@@ -46,10 +48,23 @@ function onClickRainbow() {
     isRandomColorEnabled = !isRandomColorEnabled;
 }
 
+function onClickOpaque(){
+    if(!isOpaque){
+        isRandomColorEnabled = false;
+        document.getElementById("random-color-btn").style.border = "2px rgba(250,112,154,1) solid";
+        event.target.style.border = "5px rgba(250,112,154,1) solid";
+    }else{
+        event.target.style.border = "2px rgba(250,112,154,1) solid";
+    }
+    isOpaque = !isOpaque;
+}
+
 function getColorOnHover() {
     if(isRandomColorEnabled){
         // return `rgb(${this.getRandomNumber(0, 255)}, ${this.getRandomNumber(0, 255)}, ${this.getRandomNumber(0, 255)}, ${1})`
         return this.getRandomHexCode();
+    }else if(isOpaque) {
+        return `rgba(${this.getRandomNumber(0, 255)}, ${this.getRandomNumber(0, 255)}, ${this.getRandomNumber(0, 255)}, ${0})`
     } else{
         return "rgba(250,112,154,1)";
     }
@@ -62,6 +77,8 @@ function getRandomHexCode(){
         return `rgba(${0}, ${this.getRandomNumber(0, 255)}, ${255/* this.getRandomNumber(0, 255) */}, ${0.5})`
     }
 }
+
+
 
 function getRandomNumber(min, max){
     return Math.floor(Math.random() * (max - min)) + min;
